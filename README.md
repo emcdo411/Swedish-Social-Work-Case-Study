@@ -3,9 +3,16 @@
 
 
 
+I apologize for the oversight! Let’s revert the entire `Swedish-Social-Work-Case-Study` GitHub README to English, including the existing content and the new section with the Python scripts and instructions. I’ll ensure the tone remains professional and consistent, and I’ll add the Python scripts and instructions for generating the graphs on Swedish nationals’ and immigrants’ views of the social work system. Below is the updated README in English.
+
+---
+
+### Updated GitHub README (in English)
+
+```markdown
 # Swedish-Social-Work-Case-Study
 
-This repository contains a case study on the recent changes in Swedish social work, focusing on the new Social Services Act (Socialtjänstlagen) introduced in 2025. The study explores how social work practices are shifting to be more preventive, accessible, and knowledge-based, with a specific example of placing social workers in hospital emergency rooms. It includes two detailed charts analyzing the changes and their implications for social workers and the public.
+This repository contains a case study on the recent changes in Swedish social work, focusing on the new Social Services Act (Socialtjänstlagen) introduced in 2025. The study explores how social work practices are shifting to be more preventive, accessible, and knowledge-based, with a specific example of placing social workers in hospital emergency rooms. It includes two detailed charts analyzing the changes and their implications for social workers and the public, as well as Python scripts to visualize public opinions on social work in Sweden.
 
 ## Motivation
 I created this case study to support my girlfriend, a social worker in Sweden, who shared insights from a recent agency meeting about upcoming changes in the field. Her mention of social workers working more unobtrusively, being knowledge-based, and increasing accessibility (e.g., in emergency rooms) inspired me to research and document these developments. This study aims to provide a comprehensive overview for social workers, policymakers, and anyone interested in Sweden’s evolving social services landscape.
@@ -38,6 +45,122 @@ Social work in Sweden faces challenges like high workloads, time constraints, an
 ### Case Example: Social Workers in Emergency Rooms
 The new act’s emphasis on accessibility includes placing social workers in hospital emergency rooms. In Sweden, hospitals like Swedish Edmonds already employ social workers in ERs to handle mental health evaluations, community referrals, and support for issues like substance abuse. This aligns with the act’s goals but requires addressing challenges like workload and training to ensure social workers can thrive in these settings.
 
+### Visualizing Public Opinions with Python
+To complement this case study, I’ve created two Python scripts that generate graphs showing how the Swedish public views the social work system over the last five years (2020–2025). The first graph focuses on Swedish nationals, and the second on immigrants in Sweden. Since specific survey data was not available, the data was simulated based on trends from available sources, such as disinformation campaigns since 2021 and integration challenges for immigrants.
+
+#### Suggested Columns for the Data
+For both graphs, the following columns are used:
+- **Year:** 2020 to 2025, to track changes over time.
+- **Trust_Level:** A percentage (0–100%) representing trust in the social work system.
+- **Satisfaction_Score:** A score (0–10) representing overall satisfaction with social services.
+- **Accessibility_Rating:** A score (0–10) reflecting perceived accessibility of social services.
+
+These columns were chosen because they reflect key themes in the new Social Services Act (accessibility, trust) and public perception.
+
+#### Python Script 1: Swedish Nationals’ Views on the Social Work System
+This script generates a graph showing Swedish nationals’ trust, satisfaction, and perceived accessibility of the social work system over time.
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Simulated data for Swedish nationals (2020–2025)
+data_nationals = {
+    "Year": [2020, 2021, 2022, 2023, 2024, 2025],
+    "Trust_Level": [75, 70, 65, 62, 60, 63],  # Declining trust due to disinformation, slight recovery in 2025
+    "Satisfaction_Score": [7.8, 7.5, 7.2, 7.0, 6.8, 7.0],  # High but declining, slight uptick in 2025
+    "Accessibility_Rating": [7.0, 6.8, 6.5, 6.3, 6.2, 6.5]  # Declining due to perceived strain, slight improvement in 2025
+}
+
+# Create a DataFrame
+df_nationals = pd.DataFrame(data_nationals)
+
+# Plot the data
+plt.figure(figsize=(10, 6))
+plt.plot(df_nationals["Year"], df_nationals["Trust_Level"], marker='o', label="Trust Level (%)", color="blue")
+plt.plot(df_nationals["Year"], df_nationals["Satisfaction_Score"], marker='o', label="Satisfaction Score (0–10)", color="green")
+plt.plot(df_nationals["Year"], df_nationals["Accessibility_Rating"], marker='o', label="Accessibility Rating (0–10)", color="orange")
+
+# Customize the graph
+plt.title("Swedish Nationals' Views on the Social Work System (2020–2025)", fontsize=14)
+plt.xlabel("Year", fontsize=12)
+plt.ylabel("Score", fontsize=12)
+plt.legend()
+plt.grid(True)
+plt.xticks(df_nationals["Year"])
+plt.ylim(0, 100)  # Adjust y-axis to accommodate Trust_Level percentage
+
+# Save the plot
+plt.savefig("swedish_nationals_social_work_views.png")
+plt.show()
+```
+
+#### Python Script 2: Swedish Immigrants’ Views on the Social Work System
+This script generates a graph showing immigrants’ trust, satisfaction, and perceived accessibility of the social work system over time.
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Simulated data for Swedish immigrants (2020–2025)
+data_immigrants = {
+    "Year": [2020, 2021, 2022, 2023, 2024, 2025],
+    "Trust_Level": [60, 58, 55, 53, 50, 52],  # Lower trust due to integration challenges, slight improvement in 2025
+    "Satisfaction_Score": [6.0, 5.8, 5.5, 5.3, 5.0, 5.2],  # Lower satisfaction, slight uptick in 2025
+    "Accessibility_Rating": [5.5, 5.3, 5.0, 4.8, 4.5, 4.8]  # Lower due to systemic barriers, slight improvement in 2025
+}
+
+# Create a DataFrame
+df_immigrants = pd.DataFrame(data_immigrants)
+
+# Plot the data
+plt.figure(figsize=(10, 6))
+plt.plot(df_immigrants["Year"], df_immigrants["Trust_Level"], marker='o', label="Trust Level (%)", color="blue")
+plt.plot(df_immigrants["Year"], df_immigrants["Satisfaction_Score"], marker='o', label="Satisfaction Score (0–10)", color="green")
+plt.plot(df_immigrants["Year"], df_immigrants["Accessibility_Rating"], marker='o', label="Accessibility Rating (0–10)", color="orange")
+
+# Customize the graph
+plt.title("Swedish Immigrants' Views on the Social Work System (2020–2025)", fontsize=14)
+plt.xlabel("Year", fontsize=12)
+plt.ylabel("Score", fontsize=12)
+plt.legend()
+plt.grid(True)
+plt.xticks(df_immigrants["Year"])
+plt.ylim(0, 100)  # Adjust y-axis to accommodate Trust_Level percentage
+
+# Save the plot
+plt.savefig("swedish_immigrants_social_work_views.png")
+plt.show()
+```
+
+#### Instructions for Saving and Running the Scripts
+
+##### Saving the Scripts
+You should save each script as a separate Python file with a `.py` extension:
+1. **Open a Text Editor:** Use a text editor like Notepad (Windows), TextEdit (Mac), or a code editor like VS Code, PyCharm, or Sublime Text.
+2. **Save the Files:**
+   - For the first script (Swedish nationals), copy the code and paste it into your text editor. Save it as `swedish_nationals_social_work_views.py`.
+   - For the second script (Swedish immigrants), copy the code and paste it into a new file in your text editor. Save it as `swedish_immigrants_social_work_views.py`.
+   - When saving, ensure the file extension is `.py` (e.g., select “All Files” in Notepad and manually type the `.py` extension).
+
+##### Running the Scripts
+1. **Install Python:** Ensure Python is installed on your computer (version 3.6 or later). You can download it from [python.org](https://www.python.org/downloads/).
+2. **Install Required Libraries:** Open a terminal or command prompt and install the required libraries:
+   ```
+   pip install pandas matplotlib
+   ```
+3. **Run the Scripts:**
+   - Open a terminal or command prompt.
+   - Navigate to the directory where you saved the files (e.g., `cd C:\Users\YourUsername\Documents`).
+   - Run each script:
+     ```
+     python swedish_nationals_social_work_views.py
+     ```
+     ```
+     python swedish_immigrants_social_work_views.py
+     ```
+4. **View the Output:** Each script will generate a graph and save it as a PNG file (`swedish_nationals_social_work_views.png` and `swedish_immigrants_social_work_views.png`) in the same directory. The graphs will also display on your screen.
+
 ### Conclusion
 The new Social Services Act offers a transformative opportunity for social work in Sweden, but its success depends on addressing systemic challenges like workload and public mistrust. By integrating social workers into community settings and focusing on preventive, knowledge-based practices, Sweden can strengthen its welfare system for the benefit of both social workers and the public.
 
@@ -58,3 +181,35 @@ I plan to share this case study with my girlfriend and her colleagues to spark d
 
 ## Contact
 Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/yourusername) to discuss this case study or my relocation journey to Sweden!
+```
+
+---
+
+### How to Update the README on GitHub
+1. **Open the Repository:** Go to your `Swedish-Social-Work-Case-Study` repository on GitHub.
+2. **Edit the README:** Click on `README.md` and select the “Edit” (pencil) icon.
+3. **Replace the Content:** Delete the existing content and paste the updated README content above.
+4. **Replace Placeholders:** Replace `yourusername` in the LinkedIn link with your actual LinkedIn profile URL (e.g., `https://www.linkedin.com/in/johndoe`).
+5. **Commit Changes:** Add a commit message like “Updated README to English and added Python scripts for visualizing public opinions” and click “Commit changes.”
+6. **Optional – Add the Scripts as Files:** If you want to include the Python scripts as separate files in the repository:
+   - Click “Add file” > “Create new file.”
+   - Name the first file `swedish_nationals_social_work_views.py` and paste the first script.
+   - Name the second file `swedish_immigrants_social_work_views.py` and paste the second script.
+   - Commit each file to the repository.
+
+---
+
+### Why This Update Works
+- **Language Consistency:** The entire README is now in English, making it accessible to a broader audience while aligning with your LinkedIn post.
+- **Tech Integration:** The new section adds a tech element with Python scripts, showcasing your coding skills and enhancing the case study with visual data.
+- **Clear Instructions:** The instructions for saving and running the scripts are detailed, ensuring anyone can replicate the graphs.
+- **Seamless Fit:** The new section integrates naturally into the existing structure, complementing the case study’s focus on public perception.
+
+---
+
+### Next Steps
+- **Share with Your Girlfriend:** Let her know you’ve updated the repository with the graphs, e.g., “Hey älskling, I added some cool Python graphs to the case study showing public views on social work! Check it out: [link] 💕”
+- **Enhance the Graphs:** If you find real survey data, you can update the scripts with actual values.
+- **Use in Volvo Application:** Highlight your Python skills and understanding of Swedish social work in your application to Volvo.
+
+Would you like to draft a message to share this update with your girlfriend, or perhaps prepare a section for your Volvo application using these additions? 😊 Let me know!
