@@ -3,10 +3,6 @@
 
 
 
-I apologize for the oversight! Let’s revert the entire `Swedish-Social-Work-Case-Study` GitHub README to English, including the existing content and the new section with the Python scripts and instructions. I’ll ensure the tone remains professional and consistent, and I’ll add the Python scripts and instructions for generating the graphs on Swedish nationals’ and immigrants’ views of the social work system. Below is the updated README in English.
-
----
-
 ### Updated GitHub README (in English)
 
 ```markdown
