@@ -1,14 +1,9 @@
 ![image](https://github.com/user-attachments/assets/8085030a-e820-4b93-9da3-74a8dd22a6c8)
 
 
-
-
-### Updated GitHub README (in English)
-
-```markdown
 # Swedish-Social-Work-Case-Study
 
-This repository contains a case study on the recent changes in Swedish social work, focusing on the new Social Services Act (Socialtjänstlagen) introduced in 2025. The study explores how social work practices are shifting to be more preventive, accessible, and knowledge-based, with a specific example of placing social workers in hospital emergency rooms. It includes two detailed charts analyzing the changes and their implications for social workers and the public, as well as Python scripts to visualize public opinions on social work in Sweden.
+This repository contains a case study on the recent changes in Swedish social work, focusing on the new Social Services Act (Socialtjänstlagen) introduced in 2025. The study explores how social work practices are shifting to be more preventive, accessible, and knowledge-based, with a specific example of placing social workers in hospital emergency rooms. It includes detailed charts analyzing the changes and their implications, plus Python and R scripts to visualize public opinions on social work in Sweden.
 
 ## Motivation
 I created this case study to support my girlfriend, a social worker in Sweden, who shared insights from a recent agency meeting about upcoming changes in the field. Her mention of social workers working more unobtrusively, being knowledge-based, and increasing accessibility (e.g., in emergency rooms) inspired me to research and document these developments. This study aims to provide a comprehensive overview for social workers, policymakers, and anyone interested in Sweden’s evolving social services landscape.
@@ -42,20 +37,15 @@ Social work in Sweden faces challenges like high workloads, time constraints, an
 The new act’s emphasis on accessibility includes placing social workers in hospital emergency rooms. In Sweden, hospitals like Swedish Edmonds already employ social workers in ERs to handle mental health evaluations, community referrals, and support for issues like substance abuse. This aligns with the act’s goals but requires addressing challenges like workload and training to ensure social workers can thrive in these settings.
 
 ### Visualizing Public Opinions with Python
-To complement this case study, I’ve created two Python scripts that generate graphs showing how the Swedish public views the social work system over the last five years (2020–2025). The first graph focuses on Swedish nationals, and the second on immigrants in Sweden. Since specific survey data was not available, the data was simulated based on trends from available sources, such as disinformation campaigns since 2021 and integration challenges for immigrants.
+To complement this case study, I’ve created scripts to visualize how the Swedish public views the social work system over the last five years (2020–2025). The original graphs focus on Swedish nationals and immigrants, with simulated data based on trends like disinformation campaigns and integration challenges.
 
 #### Suggested Columns for the Data
-For both graphs, the following columns are used:
 - **Year:** 2020 to 2025, to track changes over time.
 - **Trust_Level:** A percentage (0–100%) representing trust in the social work system.
 - **Satisfaction_Score:** A score (0–10) representing overall satisfaction with social services.
 - **Accessibility_Rating:** A score (0–10) reflecting perceived accessibility of social services.
 
-These columns were chosen because they reflect key themes in the new Social Services Act (accessibility, trust) and public perception.
-
 #### Python Script 1: Swedish Nationals’ Views on the Social Work System
-This script generates a graph showing Swedish nationals’ trust, satisfaction, and perceived accessibility of the social work system over time.
-
 ```python
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -84,7 +74,7 @@ plt.ylabel("Score", fontsize=12)
 plt.legend()
 plt.grid(True)
 plt.xticks(df_nationals["Year"])
-plt.ylim(0, 100)  # Adjust y-axis to accommodate Trust_Level percentage
+plt.ylim(0, 100)
 
 # Save the plot
 plt.savefig("swedish_nationals_social_work_views.png")
@@ -92,8 +82,6 @@ plt.show()
 ```
 
 #### Python Script 2: Swedish Immigrants’ Views on the Social Work System
-This script generates a graph showing immigrants’ trust, satisfaction, and perceived accessibility of the social work system over time.
-
 ```python
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -122,90 +110,157 @@ plt.ylabel("Score", fontsize=12)
 plt.legend()
 plt.grid(True)
 plt.xticks(df_immigrants["Year"])
-plt.ylim(0, 100)  # Adjust y-axis to accommodate Trust_Level percentage
+plt.ylim(0, 100)
 
 # Save the plot
 plt.savefig("swedish_immigrants_social_work_views.png")
 plt.show()
 ```
 
-#### Instructions for Saving and Running the Scripts
+#### New Terrain Map Visualizations
+Two additional terrain maps enhance this case study with spatial visualizations of public opinion on Sweden’s social welfare system in 2025:
 
-##### Saving the Scripts
-You should save each script as a separate Python file with a `.py` extension:
-1. **Open a Text Editor:** Use a text editor like Notepad (Windows), TextEdit (Mac), or a code editor like VS Code, PyCharm, or Sublime Text.
-2. **Save the Files:**
-   - For the first script (Swedish nationals), copy the code and paste it into your text editor. Save it as `swedish_nationals_social_work_views.py`.
-   - For the second script (Swedish immigrants), copy the code and paste it into a new file in your text editor. Save it as `swedish_immigrants_social_work_views.py`.
-   - When saving, ensure the file extension is `.py` (e.g., select “All Files” in Notepad and manually type the `.py` extension).
+- **Sweden Terrain Map**: Displays trust levels (nationals vs. immigrants) across major cities (Stockholm, Gothenburg, Malmö, Uppsala) using Python and `plotly` for an interactive 3D view.
+- **Gothenburg Terrain Map**: Focuses on trust levels in Gothenburg districts (Hisingen, Centrum, Majorna-Linné) using RStudio and `ggmap` with terrain tiles.
 
-##### Running the Scripts
-1. **Install Python:** Ensure Python is installed on your computer (version 3.6 or later). You can download it from [python.org](https://www.python.org/downloads/).
-2. **Install Required Libraries:** Open a terminal or command prompt and install the required libraries:
-   ```
-   pip install pandas matplotlib
-   ```
-3. **Run the Scripts:**
-   - Open a terminal or command prompt.
-   - Navigate to the directory where you saved the files (e.g., `cd C:\Users\YourUsername\Documents`).
-   - Run each script:
-     ```
-     python swedish_nationals_social_work_views.py
-     ```
-     ```
-     python swedish_immigrants_social_work_views.py
-     ```
-4. **View the Output:** Each script will generate a graph and save it as a PNG file (`swedish_nationals_social_work_views.png` and `swedish_immigrants_social_work_views.png`) in the same directory. The graphs will also display on your screen.
+##### Python Script 3: Sweden Terrain Map – Nationals vs. Immigrants
+```python
+import plotly.graph_objects as go
+import pandas as pd
+
+# Simulated data for 2025 trust levels in major cities
+data = {
+    "City": ["Stockholm", "Gothenburg", "Malmö", "Uppsala"],
+    "Latitude": [59.3293, 57.7089, 55.6040, 59.8586],
+    "Longitude": [18.0686, 11.9746, 13.0038, 17.6389],
+    "Nationals_Trust": [63, 62, 65, 64],
+    "Immigrants_Trust": [52, 51, 53, 50]
+}
+df = pd.DataFrame(data)
+
+# 3D Scatter plot
+fig = go.Figure()
+fig.add_trace(go.Scatter3d(
+    x=df["Longitude"], y=df["Latitude"], z=df["Nationals_Trust"],
+    mode="markers+text", name="Nationals Trust (%)",
+    marker=dict(size=12, color="blue"), text=df["City"]
+))
+fig.add_trace(go.Scatter3d(
+    x=df["Longitude"], y=df["Latitude"], z=df["Immigrants_Trust"],
+    mode="markers+text", name="Immigrants Trust (%)",
+    marker=dict(size=12, color="orange"), text=df["City"]
+))
+
+# Layout
+fig.update_layout(
+    title="Sweden: Trust in Social Welfare (2025)",
+    scene=dict(
+        xaxis_title="Longitude", yaxis_title="Latitude", zaxis_title="Trust (%)",
+        xaxis=dict(range=[10, 20]), yaxis=dict(range=[55, 65]), zaxis=dict(range=[0, 100])
+    )
+)
+
+# Save and show
+fig.write_html("sweden_terrain_trust.html")
+fig.show()
+```
+
+##### R Script: Gothenburg Terrain Map – Public Opinion
+```R
+# Install required packages if not already installed
+if (!require(ggmap)) install.packages("ggmap")
+if (!require(ggplot2)) install.packages("ggplot2")
+if (!require(dplyr)) install.packages("dplyr")
+
+library(ggmap)
+library(ggplot2)
+library(dplyr)
+
+# Register Stadia Maps API key (replace with your own if needed)
+register_stadiamaps("9c644007-0572-4892-915a-8da356fe40ae")
+
+# Simulated data for Gothenburg districts (Trust_Level in % for 2025)
+data <- data.frame(
+  District = c("Hisingen", "Centrum", "Majorna-Linné"),
+  Latitude = c(57.7333, 57.7089, 57.6910),
+  Longitude = c(11.9167, 11.9746, 11.9333),
+  Nationals_Trust = c(62, 63, 61),
+  Immigrants_Trust = c(51, 52, 50)
+)
+
+# Define Gothenburg bounding box
+gothenburg_bbox <- c(left = 11.8, bottom = 57.6, right = 12.1, top = 57.8)
+gothenburg_terrain <- get_stadiamap(bbox = gothenburg_bbox, maptype = "stamen_terrain", zoom = 12)
+
+# Create terrain map
+terrain_map <- ggmap(gothenburg_terrain) +
+  geom_point(data = data, aes(x = Longitude, y = Latitude, size = Nationals_Trust, color = "Nationals"), alpha = 0.8) +
+  geom_point(data = data, aes(x = Longitude, y = Latitude, size = Immigrants_Trust, color = "Immigrants"), alpha = 0.8) +
+  scale_size_continuous(range = c(5, 15), name = "Trust Level (%)") +
+  scale_color_manual(values = c("Nationals" = "blue", "Immigrants" = "orange"), name = "Group") +
+  geom_text(data = data, aes(x = Longitude, y = Latitude, label = District), vjust = -1.5, size = 4) +
+  labs(title = "Gothenburg: Trust in Social Welfare (2025)", x = "Longitude", y = "Latitude") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, size = 14))
+
+# Save and display
+ggsave("gothenburg_terrain_trust.png", terrain_map, width = 10, height = 8, dpi = 300)
+cat("Saved as 'gothenburg_terrain_trust.png'\n")
+print(terrain_map)
+```
+
+#### Instructions for Running the Scripts
+- **Python Scripts**: 
+  1. Install Python and libraries: `pip install pandas matplotlib plotly`.
+  2. Save as `.py` files (e.g., `swedish_nationals_social_work_views.py`, `sweden_terrain_trust.py`).
+  3. Run: `python <filename>.py`.
+  4. Outputs: PNG graphs and an HTML terrain map.
+
+- **R Script**:
+  1. Install R and RStudio.
+  2. Install packages: Run the script’s `install.packages` lines.
+  3. Save as `gothenburg_terrain_trust.R`.
+  4. Run in RStudio: Set working directory (`setwd()`), then execute.
+  5. Output: PNG terrain map.
 
 ### Conclusion
 The new Social Services Act offers a transformative opportunity for social work in Sweden, but its success depends on addressing systemic challenges like workload and public mistrust. By integrating social workers into community settings and focusing on preventive, knowledge-based practices, Sweden can strengthen its welfare system for the benefit of both social workers and the public.
 
-## References
+### References
 - Swedish Government on Social Services: [Government.se - Social Services](https://www.government.se)
-- Study on Evidence-Based Practice Among Swedish Medical Social Workers: [PubMed - Evidence-based practice among Swedish medical social workers](https://pubmed.ncbi.nlm.nih.gov)
-- Swedish Healthcare System Overview: [Commonwealth Fund - Sweden](https://www.commonwealthfund.org)
-- Social Work in Emergency Departments: [Social Work Today - Making Caring Connections](https://www.socialworktoday.com)
-- Swedish Primary Healthcare Work Environment: [Human Resources Health - Psychosocial work environment in Swedish primary healthcare](https://human-resources-health.biomedcentral.com)
+- Study on Evidence-Based Practice: [PubMed - Evidence-based practice among Swedish medical social workers](https://pubmed.ncbi.nlm.nih.gov)
+- Swedish Healthcare System: [Commonwealth Fund - Sweden](https://www.commonwealthfund.org)
+- Social Work in ERs: [Social Work Today - Making Caring Connections](https://www.socialworktoday.com)
+- Swedish Primary Healthcare: [Human Resources Health - Psychosocial work environment](https://human-resources-health.biomedcentral.com)
 
-## How to Use This Case Study
-- **For Social Workers:** Use this study to understand the upcoming changes and prepare for new roles in settings like emergency rooms.
-- **For Policymakers:** Consider the pros and cons to ensure adequate support for social workers during this transition.
-- **For the Public:** Learn about the evolving role of social services and how they aim to better support communities.
+### How to Use This Case Study
+- **For Social Workers**: Understand upcoming changes and prepare for new roles.
+- **For Policymakers**: Consider pros and cons to support social workers during this transition.
+- **For the Public**: Learn about the evolving role of social services.
 
-## Next Steps
-I plan to share this case study with my girlfriend and her colleagues to spark discussions on how to navigate these changes. I also aim to incorporate these insights into my Volvo application, showing my understanding of Sweden’s social work landscape as part of my relocation journey.
+### Next Steps
+I plan to share this with my girlfriend and her colleagues to spark discussions and incorporate these insights into my Volvo application, highlighting my understanding of Sweden’s social work landscape.
 
-## Contact
-Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/yourusername) to discuss this case study or my relocation journey to Sweden!
+### Contact
+Reach out on LinkedIn to discuss this case study or my relocation journey to Sweden!
 ```
 
 ---
 
-### How to Update the README on GitHub
-1. **Open the Repository:** Go to your `Swedish-Social-Work-Case-Study` repository on GitHub.
-2. **Edit the README:** Click on `README.md` and select the “Edit” (pencil) icon.
-3. **Replace the Content:** Delete the existing content and paste the updated README content above.
-4. **Replace Placeholders:** Replace `yourusername` in the LinkedIn link with your actual LinkedIn profile URL (e.g., `https://www.linkedin.com/in/johndoe`).
-5. **Commit Changes:** Add a commit message like “Updated README to English and added Python scripts for visualizing public opinions” and click “Commit changes.”
-6. **Optional – Add the Scripts as Files:** If you want to include the Python scripts as separate files in the repository:
+### How to Update on GitHub
+1. **Open Repository**: Go to `Swedish-Social-Work-Case-Study` on GitHub.
+2. **Edit README**: Click `README.md`, then the “Edit” (pencil) icon.
+3. **Replace Content**: Paste the above markdown, replacing the old content.
+4. **Add Scripts as Files** (Optional):
    - Click “Add file” > “Create new file.”
-   - Name the first file `swedish_nationals_social_work_views.py` and paste the first script.
-   - Name the second file `swedish_immigrants_social_work_views.py` and paste the second script.
-   - Commit each file to the repository.
+   - Add `sweden_terrain_trust.py` and `gothenburg_terrain_trust.R` with their respective code.
+5. **Commit**: Use a message like “Added terrain map visualizations for Sweden and Gothenburg” and commit.
 
 ---
 
-### Why This Update Works
-- **Language Consistency:** The entire README is now in English, making it accessible to a broader audience while aligning with your LinkedIn post.
-- **Tech Integration:** The new section adds a tech element with Python scripts, showcasing your coding skills and enhancing the case study with visual data.
-- **Clear Instructions:** The instructions for saving and running the scripts are detailed, ensuring anyone can replicate the graphs.
-- **Seamless Fit:** The new section integrates naturally into the existing structure, complementing the case study’s focus on public perception.
+### Notes
+- **Integration**: The new terrain maps are nested under the existing visualization section, maintaining flow.
+- **Consistency**: Data aligns with your README’s 2025 trust levels (nationals: ~63%, immigrants: ~52%).
+- **Link**: You’ll need to add your GitHub URL (e.g., `https://github.com/yourusername/Swedish-Social-Work-Case-Study`)—share your username if you want it included!
 
----
-
-### Next Steps
-- **Share with Your Girlfriend:** Let her know you’ve updated the repository with the graphs, e.g., “Hey älskling, I added some cool Python graphs to the case study showing public views on social work! Check it out: [link] 💕”
-- **Enhance the Graphs:** If you find real survey data, you can update the scripts with actual values.
-- **Use in Volvo Application:** Highlight your Python skills and understanding of Swedish social work in your application to Volvo.
-
-Would you like to draft a message to share this update with your girlfriend, or perhaps prepare a section for your Volvo application using these additions? 😊 Let me know!
+What’s your GitHub username? Any tweaks—like adding satisfaction scores to the maps? This is ready to elevate your project! 😊
